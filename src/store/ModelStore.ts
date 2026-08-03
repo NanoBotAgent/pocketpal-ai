@@ -2441,6 +2441,55 @@ class ModelStore {
     }
   };
 
+  importPocketPalModels = async (modelFiles: Array<{name: string; uri: string; path: string; size: number}>) => {
+    const defaultSettings = getLocalModelDefaultSettings();
+    const newModels: Model[] = [];
+
+    for (const file of modelFiles) {
+      const filename = file.name;
+      const fileSize = file.size;
+
+      const model: Model = {
+        id: uuidv4(),
+        author: '',
+        name: filename,
+        size: fileSize,
+        params: 0,
+        isDownloaded: true,
+        downloadUrl: '',
+        hfUrl: '',
+        progress: 0,
+        filename,
+        fullPath: file.uri,
+        isLocal: true,
+        origin: ModelOrigin.POCKETPAL,
+        defaultChatTemplate: {...defaultSettings.chatTemplate},
+        chatTemplate: {...defaultSettings.chatTemplate},
+        defaultStopWords: [...(defaultSettings?.completionParams?.stop || [])],
+        stopWords: [...(defaultSettings?.completionParams?.stop || [])],
+        defaultCompletionSettings: defaultSettings.completionParams,
+        completionSettings: {...defaultSettings.completionParams},
+      };
+
+      newModels.push(model);
+    }
+
+    runInAction(() => {
+      this.models.push(...newModels);
+      this.refreshDownloadStatuses();
+    });
+
+    // Fetch GGUF metadata for each new model
+    for (const model of newModels) {
+      const observableModel = this.models.find(m => m.id === model.id);
+      if (observableModel) {
+        await this.fetchAndPersistGGUFMetadata(observableModel);
+      }
+    }
+
+    return newModels.length;
+  };
+
   updateModelChatTemplate = (
     modelId: string,
     newConfig: ChatTemplateConfig,

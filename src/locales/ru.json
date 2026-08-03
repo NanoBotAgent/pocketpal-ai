@@ -876,6 +876,7 @@
     "buttons": {
       "addFromHuggingFace": "Добавить из Hugging Face",
       "addLocalModel": "Добавить локальную модель",
+      "importFromPocketPal": "Импортировать из PocketPal AI",
       "reset": "Сброс"
     },
     "chatTemplate": {

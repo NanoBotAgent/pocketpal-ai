@@ -28,6 +28,7 @@ import {
 import {uiStore, modelStore, hfStore, UIStore, serverStore} from '../../store';
 
 import {L10nContext} from '../../utils';
+import {pocketPalNative} from '../../native/PocketPal';
 import {Model, ModelOrigin} from '../../utils/types';
 import {ErrorState} from '../../utils/errors';
 
@@ -266,6 +267,47 @@ export const ModelsScreen: React.FC = observer(() => {
       .catch(e => console.log('No file picked, error: ', e.message));
   };
 
+  const [pocketPalInstalled, setPocketPalInstalled] = useState(false);
+
+  useEffect(() => {
+    const checkPocketPal = async () => {
+      if (Platform.OS === 'android') {
+        const status = await pocketPalNative.isPocketPalInstalled();
+        setPocketPalInstalled(status.installed);
+      }
+    };
+    checkPocketPal();
+  }, []);
+
+  const handleImportPocketPalModels = async () => {
+    if (Platform.OS !== 'android') {
+      Alert.alert('Not Available', 'PocketPal AI import is only available on Android');
+      return;
+    }
+
+    try {
+      const modelFiles = await pocketPalNative.pickPocketPalModelsDirectory();
+      if (modelFiles.length > 0) {
+        const count = await modelStore.importPocketPalModels(modelFiles);
+        Alert.alert(
+          'Success',
+          `Imported ${count} model(s) from PocketPal AI`,
+        );
+      } else {
+        Alert.alert('No Models Found', 'No compatible model files found in the selected directory');
+      }
+    } catch (e) {
+      if (e instanceof Error && e.message.includes('CANCELLED')) {
+        return; // User cancelled
+      }
+      console.error('Failed to import PocketPal models:', e);
+      Alert.alert(
+        'Error',
+        e instanceof Error ? e.message : 'Failed to import models from PocketPal AI',
+      );
+    }
+  };
+
   const activeModelId = modelStore.activeModel?.id;
   const models = modelStore.displayModels;
 
@@ -446,8 +488,10 @@ export const ModelsScreen: React.FC = observer(() => {
         onAddHFModel={() => setHFSearchVisible(true)}
         onAddLocalModel={handleAddLocalModel}
         onAddRemoteModel={handleAddRemoteModel}
+        onImportPocketPalModels={handleImportPocketPalModels}
         onManageServers={handleManageServers}
         hasServers={serverStore.servers.length > 0}
+        pocketPalInstalled={pocketPalInstalled}
       />
       <ModelSettingsSheet
         isVisible={settingsVisible}

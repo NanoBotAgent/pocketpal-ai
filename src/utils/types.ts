@@ -461,6 +461,7 @@ export enum ModelOrigin {
   LOCAL = 'local',
   HF = 'hf',
   REMOTE = 'remote',
+  POCKETPAL = 'pocketpal',
 }
 
 export interface ServerConfig {

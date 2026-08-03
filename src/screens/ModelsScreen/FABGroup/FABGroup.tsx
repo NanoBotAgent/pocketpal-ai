@@ -12,8 +12,10 @@ interface FABGroupProps {
   onAddHFModel: () => void;
   onAddLocalModel: () => void;
   onAddRemoteModel: () => void;
+  onImportPocketPalModels: () => void;
   onManageServers?: () => void;
   hasServers?: boolean;
+  pocketPalInstalled?: boolean;
 }
 
 const iconStyle = {width: 24, height: 24};
@@ -37,8 +39,10 @@ export const FABGroup: React.FC<FABGroupProps> = ({
   onAddHFModel,
   onAddLocalModel,
   onAddRemoteModel,
+  onImportPocketPalModels,
   onManageServers,
   hasServers,
+  pocketPalInstalled,
 }) => {
   const [open, setOpen] = useState(false);
   const l10n = useContext(L10nContext);
@@ -69,16 +73,29 @@ export const FABGroup: React.FC<FABGroupProps> = ({
           onAddLocalModel();
         },
       },
-      {
-        testID: 'remote-fab',
-        icon: RemoteIcon,
-        label: l10n.settings.addRemoteModel,
-        accessibilityLabel: l10n.settings.addRemoteModel,
+    ];
+    if (pocketPalInstalled) {
+      items.push({
+        testID: 'pocketpal-fab',
+        icon: 'android',
+        label: l10n.models.buttons.importFromPocketPal,
+        accessibilityLabel: l10n.models.buttons.importFromPocketPal,
         style: styles.actionButton,
         onPress: () => {
-          onAddRemoteModel();
+          onImportPocketPalModels();
         },
+      });
+    }
+    items.push({
+      testID: 'remote-fab',
+      icon: RemoteIcon,
+      label: l10n.settings.addRemoteModel,
+      accessibilityLabel: l10n.settings.addRemoteModel,
+      style: styles.actionButton,
+      onPress: () => {
+        onAddRemoteModel();
       },
+    });
     ];
     if (hasServers && onManageServers) {
       items.push({
@@ -98,8 +115,10 @@ export const FABGroup: React.FC<FABGroupProps> = ({
     onAddHFModel,
     onAddLocalModel,
     onAddRemoteModel,
+    onImportPocketPalModels,
     onManageServers,
     hasServers,
+    pocketPalInstalled,
     styles.actionButton,
   ]);
 

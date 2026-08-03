@@ -277,6 +277,7 @@
     "buttons": {
       "addFromHuggingFace": "افزودن از Hugging Face",
       "addLocalModel": "افزودن مدل محلی",
+      "importFromPocketPal": "وارد کردن از PocketPal AI",
       "reset": "بازنشانی"
     },
     "modelsHeaderRight": {

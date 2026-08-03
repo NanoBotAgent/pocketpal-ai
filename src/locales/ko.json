@@ -832,6 +832,7 @@
     "buttons": {
       "addFromHuggingFace": "Hugging Face에서 가져오기",
       "addLocalModel": "내 기기에서 모델 추가",
+      "importFromPocketPal": "PocketPal AI에서 가져오기",
       "reset": "재설정"
     },
     "modelsResetDialog": {

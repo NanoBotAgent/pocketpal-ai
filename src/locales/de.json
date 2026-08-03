@@ -243,6 +243,7 @@
     "buttons": {
       "addFromHuggingFace": "Von Hugging Face hinzufügen",
       "addLocalModel": "Lokales Modell hinzufügen",
+      "importFromPocketPal": "Aus PocketPal AI importieren",
       "reset": "Zurücksetzen"
     },
     "modelsHeaderRight": {

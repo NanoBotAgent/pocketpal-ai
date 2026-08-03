@@ -277,6 +277,7 @@
     "buttons": {
       "addFromHuggingFace": "Додати з Hugging Face",
       "addLocalModel": "Додати локальну модель",
+      "importFromPocketPal": "Імпортувати з PocketPal AI",
       "reset": "Скинути"
     },
     "modelsHeaderRight": {

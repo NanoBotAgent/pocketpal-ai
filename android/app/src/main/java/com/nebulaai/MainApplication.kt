@@ -18,6 +18,7 @@ import com.nebulaai.StorefrontPackage
 import com.nebulaai.AuthSessionPackage
 import com.nebulaai.ExternalContentLinkPackage
 import com.nebulaai.download.DownloadPackage
+import com.nebulaai.pocketpal.PocketPalPackage
 
 class MainApplication : Application(), ReactApplication {
 
@@ -33,6 +34,7 @@ class MainApplication : Application(), ReactApplication {
               add(AuthSessionPackage())
               add(ExternalContentLinkPackage())
               add(DownloadPackage())
+              add(PocketPalPackage())
             }
 
         override fun getJSMainModuleName(): String = "index"
