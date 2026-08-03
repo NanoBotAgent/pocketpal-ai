@@ -1,4 +1,4 @@
-package com.pocketpal
+package com.nebulaai
 
 import android.app.Application
 import android.system.Os

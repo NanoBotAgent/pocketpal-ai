@@ -1,4 +1,4 @@
-package com.pocketpal
+package com.nebulaai
 
 import com.facebook.react.bridge.*
 import com.facebook.react.module.annotations.ReactModule

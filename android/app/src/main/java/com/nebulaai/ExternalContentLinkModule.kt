@@ -1,4 +1,4 @@
-package com.pocketpal
+package com.nebulaai
 
 import android.net.Uri
 import android.util.Log
