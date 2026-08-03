@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, ViewStyle} from 'react-native';
 import {observer} from 'mobx-react-lite';
 import {useTheme} from 'react-native-paper';
-import {hardwareSplitStore, SplitPreset} from '../../store/HardwareSplitStore';
+import {hardwareSplitStore, SplitPreset} from '../store/HardwareSplitStore';
 
 const PRESETS: {key: SplitPreset; label: string; gpu: number; cpu: number}[] = [
   {key: '100-0', label: '100% GPU', gpu: 100, cpu: 0},
