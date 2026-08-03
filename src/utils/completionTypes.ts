@@ -37,7 +37,7 @@ export type AppOnlyCompletionParams = {
    * When false, thinking parts are removed from the context to save context space.
    */
   include_thinking_in_context?: boolean;
-  // Add other PocketPal-only fields here
+  // Add other NebulaAI-only fields here
 };
 
 /**
@@ -56,7 +56,7 @@ const APP_ONLY_KEYS: (keyof AppOnlyCompletionParams)[] = [
 export type CompletionParams = ApiCompletionParams & AppOnlyCompletionParams;
 
 /**
- * Strips PocketPal-specific fields before sending to llama.rn.
+ * Strips NebulaAI-specific fields before sending to llama.rn.
  *
  * @param params - The app completion parameters that may include app-specific properties
  * @returns A clean API completion parameters object with only properties supported by the API

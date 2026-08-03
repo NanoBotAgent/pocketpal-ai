@@ -20,7 +20,7 @@ type NeuralEngineId = Exclude<EngineId, 'system'>;
 const STATUS_FILENAME = 'tts-command-status.json';
 
 const SAMPLE_TEXT =
-  'PocketPal runs language models on your phone, fully offline.';
+  'NebulaAI runs language models on your phone, fully offline.';
 
 interface TtsStatus {
   cmd: string;
