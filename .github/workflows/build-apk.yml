@@ -37,10 +37,60 @@ jobs:
           ENABLE_PALSHUB_INTEGRATION=false
           ENABLE_AUTHENTICATION=false
           ENABLE_OFFLINE_MODE=true
+          FIREBASE_FUNCTIONS_URL=https://dummy-firebase-url.com
+          SUPABASE_URL=https://dummy-supabase-url.supabase.co
+          SUPABASE_ANON_KEY=dummy-anon-key
+          PALSHUB_API_BASE_URL=https://dummy-palshub-api.com
+          EOL
+
+      - name: Create dummy google-services.json
+        run: |
+          cat > android/app/google-services.json << 'EOL'
+          {
+            "project_info": {
+              "project_number": "000000000000",
+              "project_id": "dummy-project-for-ci",
+              "storage_bucket": "dummy-project-for-ci.appspot.com"
+            },
+            "client": [{
+              "client_info": {
+                "mobilesdk_app_id": "1:000000000000:android:0000000000000000",
+                "android_client_info": {
+                  "package_name": "com.nebulaai"
+                }
+              },
+              "api_key": [{
+                "current_key": "dummy-api-key-for-ci-builds"
+              }],
+              "services": {
+                "appinvite_service": {
+                  "status": 1
+                }
+              }
+            }]
+          }
           EOL
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
+
+      - name: Download missing fonts (Manrope, Space Grotesk)
+        run: |
+          mkdir -p src/assets/fonts android/app/src/main/assets/fonts
+          cd src/assets/fonts
+          # Download Manrope static TTFs
+          curl -sL -o Manrope-Regular.ttf "https://github.com/google/fonts/raw/main/ofl/manrope/Manrope-Regular.ttf"
+          curl -sL -o Manrope-Medium.ttf "https://github.com/google/fonts/raw/main/ofl/manrope/Manrope-Medium.ttf"
+          curl -sL -o Manrope-SemiBold.ttf "https://github.com/google/fonts/raw/main/ofl/manrope/Manrope-SemiBold.ttf"
+          curl -sL -o Manrope-Bold.ttf "https://github.com/google/fonts/raw/main/ofl/manrope/Manrope-Bold.ttf"
+          # Download Space Grotesk static TTFs
+          curl -sL -o SpaceGrotesk-Regular.ttf "https://github.com/google/fonts/raw/main/ofl/spacegrotesk/SpaceGrotesk-Regular.ttf"
+          curl -sL -o SpaceGrotesk-Medium.ttf "https://github.com/google/fonts/raw/main/ofl/spacegrotesk/SpaceGrotesk-Medium.ttf"
+          curl -sL -o SpaceGrotesk-SemiBold.ttf "https://github.com/google/fonts/raw/main/ofl/spacegrotesk/SpaceGrotesk-SemiBold.ttf"
+          curl -sL -o SpaceGrotesk-Bold.ttf "https://github.com/google/fonts/raw/main/ofl/spacegrotesk/SpaceGrotesk-Bold.ttf"
+          # Copy to Android assets
+          cp *.ttf ../../../android/app/src/main/assets/fonts/
+          ls -la
 
       - name: Make gradlew executable
         run: chmod +x android/gradlew
