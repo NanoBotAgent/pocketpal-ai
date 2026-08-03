@@ -1,6 +1,6 @@
 //
 //  MustacheRenderer.swift
-//  PocketPal
+//  NebulaAI
 //
 //  Mustache template renderer for system prompt parameter substitution
 //  Uses GRMustache.swift library (https://github.com/groue/GRMustache.swift)

@@ -1,6 +1,6 @@
 //
 //  DeepLinkModule.swift
-//  PocketPal
+//  NebulaAI
 //
 //  React Native module for handling deep links from Shortcuts
 //

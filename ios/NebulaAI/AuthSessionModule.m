@@ -1,6 +1,6 @@
 //
 //  AuthSessionModule.m
-//  PocketPal
+//  NebulaAI
 //
 //  Objective-C bridge for AuthSessionModule
 //

@@ -1,6 +1,6 @@
 //
 //  LlamaContextWrapper.h
-//  PocketPal
+//  NebulaAI
 //
 //  Objective-C wrapper for RNLlamaContext to use in Swift
 //

@@ -1,15 +1,15 @@
 //
-//  PocketPalShortcuts.swift
-//  PocketPal
+//  NebulaAIShortcuts.swift
+//  NebulaAI
 //
-//  App Shortcuts provider for PocketPal
+//  App Shortcuts provider for NebulaAI
 //
 
 import Foundation
 import AppIntents
 
 @available(iOS 16.0, *)
-struct PocketPalShortcuts: AppShortcutsProvider {
+struct NebulaAIShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(
             intent: AskPalIntent(),

@@ -1,6 +1,6 @@
 //
 //  StorefrontModule.swift
-//  PocketPal
+//  NebulaAI
 //
 //  Native module for detecting App Store storefront region
 //

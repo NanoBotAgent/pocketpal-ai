@@ -1,6 +1,6 @@
 //
 //  AuthSessionModule.swift
-//  PocketPal
+//  NebulaAI
 //
 //  Native module wrapping ASWebAuthenticationSession to open a web checkout
 //  flow and capture its custom-scheme callback URL.

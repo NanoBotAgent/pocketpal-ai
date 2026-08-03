@@ -1,6 +1,6 @@
 //
 //  LlamaInferenceEngine.swift
-//  PocketPal
+//  NebulaAI
 //
 //  Wrapper for llama.rn inference for use in App Intents
 //
@@ -280,7 +280,7 @@ actor LlamaInferenceEngine {
         }
 
         // Strip app-specific fields before passing to llama.rn
-        // These are PocketPal-only fields that llama.rn doesn't understand
+        // These are NebulaAI-only fields that llama.rn doesn't understand
         // See: src/utils/completionTypes.ts - APP_ONLY_KEYS
         let appOnlyKeys = ["version", "include_thinking_in_context"]
         for key in appOnlyKeys {

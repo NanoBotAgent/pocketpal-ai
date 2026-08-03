@@ -1,6 +1,6 @@
 //
 //  StorefrontModule.m
-//  PocketPal
+//  NebulaAI
 //
 //  Objective-C bridge for StorefrontModule
 //

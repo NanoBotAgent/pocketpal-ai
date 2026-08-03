@@ -1,6 +1,6 @@
 //
 //  PalEntity.swift
-//  PocketPal
+//  NebulaAI
 //
 //  App Intents entity representing a Pal for Siri and Shortcuts
 //

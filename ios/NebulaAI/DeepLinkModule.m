@@ -1,6 +1,6 @@
 //
 //  DeepLinkModule.m
-//  PocketPal
+//  NebulaAI
 //
 //  Objective-C bridge for DeepLinkModule
 //
