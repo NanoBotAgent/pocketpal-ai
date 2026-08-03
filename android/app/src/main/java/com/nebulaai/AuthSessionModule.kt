@@ -9,7 +9,7 @@ import com.facebook.react.bridge.LifecycleEventListener
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.annotations.ReactModule
-import com.pocketpal.specs.NativeAuthSessionSpec
+import com.nebulaai.specs.NativeAuthSessionSpec
 
 /**
  * Opens a web checkout flow in a Chrome Custom Tab and resolves with the

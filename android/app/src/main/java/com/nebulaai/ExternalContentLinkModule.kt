@@ -13,7 +13,7 @@ import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.WritableMap
 import com.facebook.react.module.annotations.ReactModule
-import com.pocketpal.specs.NativeExternalContentLinkSpec
+import com.nebulaai.specs.NativeExternalContentLinkSpec
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**

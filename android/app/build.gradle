@@ -85,7 +85,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.pocketpal"
+    namespace "com.nebulaai"
     defaultConfig {
         applicationId "com.nebulaai"
         minSdkVersion rootProject.ext.minSdkVersion
