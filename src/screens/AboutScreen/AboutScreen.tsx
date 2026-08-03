@@ -144,7 +144,7 @@ export const AboutScreen: React.FC = () => {
             <Button
               mode="outlined"
               onPress={() =>
-                Linking.openURL('https://github.com/a-ghorbani/pocketpal-ai')
+                Linking.openURL('https://github.com/NanoBotAgent/pocketpal-ai')
               }
               style={styles.actionButton}
               icon={GithubButtonIcon}>
