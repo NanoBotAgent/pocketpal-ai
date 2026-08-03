@@ -56,6 +56,8 @@ import {
   ttsStore,
   searchProviderStore,
 } from '../../store';
+import {hardwareSplitStore} from '../../store/HardwareSplitStore';
+import {HardwareSplitSettings} from '../../components/HardwareSplitSettings';
 import type {SearchProviderId} from '../../services/search/types';
 
 import {CacheType} from '../../utils/types';
@@ -366,6 +368,9 @@ export const SettingsScreen: React.FC = observer(() => {
                           modelStore.contextInitParams.n_gpu_layers.toString(),
                       })}
                     </Text>
+
+                    {/* NebulaAI Hybrid GPU/CPU Split */}
+                    <HardwareSplitSettings />
                   </>
                 ) : (
                   /* Simplified UI when only CPU available */

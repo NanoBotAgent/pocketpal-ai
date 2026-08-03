@@ -27,12 +27,14 @@ import {TokenTypography, TypographyStyle} from './types';
 // italics, alt `g`). PostScript names match the original family so RN
 // font lookup is unchanged.
 export const FONT_FAMILIES = {
-  INTER_REGULAR: 'Inter-Regular',
-  INTER_MEDIUM: 'Inter-Medium',
-  FRAUNCES_REGULAR: 'Fraunces-Regular',
-  FRAUNCES_MEDIUM: 'Fraunces-Medium',
-  FRAUNCES_ITALIC: 'Fraunces-Italic',
-  FRAUNCES_MEDIUM_ITALIC: 'Fraunces-MediumItalic',
+  MANROPE_REGULAR: 'Manrope-Regular',
+  MANROPE_MEDIUM: 'Manrope-Medium',
+  MANROPE_SEMIBOLD: 'Manrope-SemiBold',
+  MANROPE_BOLD: 'Manrope-Bold',
+  SPACE_GROTESK_REGULAR: 'SpaceGrotesk-Regular',
+  SPACE_GROTESK_MEDIUM: 'SpaceGrotesk-Medium',
+  SPACE_GROTESK_SEMIBOLD: 'SpaceGrotesk-SemiBold',
+  SPACE_GROTESK_BOLD: 'SpaceGrotesk-Bold',
   JETBRAINS_MONO_REGULAR: 'JetBrainsMono-Regular',
   JETBRAINS_MONO_MEDIUM: 'JetBrainsMono-Medium',
 } as const;
@@ -83,88 +85,82 @@ const isNonLatinLocale = (locale: AvailableLanguage): boolean =>
  * migrate per screen.
  */
 export const typography: TokenTypography = {
-  // Body (Inter)
+  // Body (Manrope)
   bodyM: {
-    fontFamily: FONT_FAMILIES.INTER_REGULAR,
+    fontFamily: FONT_FAMILIES.MANROPE_REGULAR,
     fontSize: 16,
     lineHeight: 24,
     fontWeight: '400',
   },
   bodyS: {
-    fontFamily: FONT_FAMILIES.INTER_REGULAR,
+    fontFamily: FONT_FAMILIES.MANROPE_REGULAR,
     fontSize: 14,
     lineHeight: 20,
     fontWeight: '400',
   },
 
-  // UI (Inter, medium)
+  // UI (Manrope, medium)
   uiM: {
-    fontFamily: FONT_FAMILIES.INTER_MEDIUM,
+    fontFamily: FONT_FAMILIES.MANROPE_MEDIUM,
     fontSize: 14,
     lineHeight: 20,
     fontWeight: '500',
   },
   uiS: {
-    fontFamily: FONT_FAMILIES.INTER_MEDIUM,
+    fontFamily: FONT_FAMILIES.MANROPE_MEDIUM,
     fontSize: 12,
     lineHeight: 16,
     fontWeight: '500',
   },
 
-  // Title (Inter, medium)
+  // Title (Space Grotesk, semibold)
   titleL: {
-    fontFamily: FONT_FAMILIES.INTER_MEDIUM,
+    fontFamily: FONT_FAMILIES.SPACE_GROTESK_SEMIBOLD,
     fontSize: 22,
     lineHeight: 28,
-    fontWeight: '500',
+    fontWeight: '600',
   },
   titleM: {
-    fontFamily: FONT_FAMILIES.INTER_MEDIUM,
+    fontFamily: FONT_FAMILIES.SPACE_GROTESK_MEDIUM,
     fontSize: 18,
     lineHeight: 24,
     fontWeight: '500',
   },
   titleS: {
-    fontFamily: FONT_FAMILIES.INTER_MEDIUM,
+    fontFamily: FONT_FAMILIES.SPACE_GROTESK_MEDIUM,
     fontSize: 16,
     lineHeight: 22,
     fontWeight: '500',
   },
 
-  // Caption (Inter)
+  // Caption (Manrope)
   captionM: {
-    fontFamily: FONT_FAMILIES.INTER_REGULAR,
+    fontFamily: FONT_FAMILIES.MANROPE_REGULAR,
     fontSize: 12,
     lineHeight: 16,
     fontWeight: '400',
   },
   captionS: {
-    fontFamily: FONT_FAMILIES.INTER_REGULAR,
+    fontFamily: FONT_FAMILIES.MANROPE_REGULAR,
     fontSize: 11,
     lineHeight: 14,
     fontWeight: '400',
   },
 
-  // Headlines (Fraunces — bundled subset is Latin-only; non-Latin and
-  // Cyrillic locales swap to Inter via `typographyForLocale`). Canonical
-  // Headline/H1 uses Fraunces-Regular family at font-medium (500); we
-  // pick the bundled `Fraunces-Medium` static cut to match.
+  // Headlines (Space Grotesk — display font)
   headlineH1: {
-    fontFamily: FONT_FAMILIES.FRAUNCES_MEDIUM,
+    fontFamily: FONT_FAMILIES.SPACE_GROTESK_BOLD,
     fontSize: 36,
-    // 36 × 1.4 = 50.4 → 50 (absolute px; canonical multiplier resolved)
     lineHeight: 50,
-    fontWeight: '500',
+    fontWeight: '700',
   },
 
-  // Accent italic (Fraunces italic). lineHeight === fontSize per the
-  // canonical Styled/xs "100%" multiplier (resolved to absolute px).
+  // Accent (Space Grotesk medium)
   styledXs: {
-    fontFamily: FONT_FAMILIES.FRAUNCES_ITALIC,
+    fontFamily: FONT_FAMILIES.SPACE_GROTESK_MEDIUM,
     fontSize: 14,
     lineHeight: 14,
-    fontWeight: '400',
-    fontStyle: 'italic',
+    fontWeight: '500',
   },
 
   // Code (JetBrains Mono — locale-agnostic)
@@ -206,19 +202,14 @@ export function typographyForLocale(
     return base;
   }
   switch (base.fontFamily) {
-    case FONT_FAMILIES.FRAUNCES_REGULAR:
-      return {...base, fontFamily: FONT_FAMILIES.INTER_REGULAR};
-    case FONT_FAMILIES.FRAUNCES_MEDIUM:
-      return {...base, fontFamily: FONT_FAMILIES.INTER_MEDIUM};
-    case FONT_FAMILIES.FRAUNCES_ITALIC:
-    case FONT_FAMILIES.FRAUNCES_MEDIUM_ITALIC:
-      // Synthesised italic on Inter rather than shipping Inter-Italic
-      // cuts (~200KB per cut for an accent-only style).
-      return {
-        ...base,
-        fontFamily: FONT_FAMILIES.INTER_MEDIUM,
-        fontStyle: 'italic',
-      };
+    case FONT_FAMILIES.SPACE_GROTESK_REGULAR:
+      return {...base, fontFamily: FONT_FAMILIES.MANROPE_REGULAR};
+    case FONT_FAMILIES.SPACE_GROTESK_MEDIUM:
+      return {...base, fontFamily: FONT_FAMILIES.MANROPE_MEDIUM};
+    case FONT_FAMILIES.SPACE_GROTESK_SEMIBOLD:
+      return {...base, fontFamily: FONT_FAMILIES.MANROPE_SEMIBOLD};
+    case FONT_FAMILIES.SPACE_GROTESK_BOLD:
+      return {...base, fontFamily: FONT_FAMILIES.MANROPE_BOLD};
     default:
       // Inter family and JetBrains Mono — no swap.
       return base;
