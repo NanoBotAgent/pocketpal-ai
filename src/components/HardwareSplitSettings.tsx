@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, ViewStyle} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ViewStyle,
+} from 'react-native';
 import {observer} from 'mobx-react-lite';
 import {useTheme} from 'react-native-paper';
 import {hardwareSplitStore, SplitPreset} from '../store/HardwareSplitStore';
@@ -16,12 +22,19 @@ export const HardwareSplitSettings = observer(() => {
   const theme = useTheme();
   const c = theme.colors;
 
+  const titleStyle = [
+    styles.title,
+    {color: c.onSurface, fontFamily: 'SpaceGrotesk-SemiBold'},
+  ];
+  const subtitleStyle = [
+    styles.subtitle,
+    {color: c.onSurfaceVariant, fontFamily: 'Manrope-Regular'},
+  ];
+
   return (
     <View style={[styles.container, {backgroundColor: c.surface}]}>
-      <Text style={[styles.title, {color: c.onSurface, fontFamily: 'SpaceGrotesk-SemiBold'}]}>
-        GPU / CPU Split
-      </Text>
-      <Text style={[styles.subtitle, {color: c.onSurfaceVariant, fontFamily: 'Manrope-Regular'}]}>
+      <Text style={titleStyle}>GPU / CPU Split</Text>
+      <Text style={subtitleStyle}>
         Control how much inference runs on GPU vs CPU
       </Text>
 
@@ -45,7 +58,9 @@ export const HardwareSplitSettings = observer(() => {
                 style={[
                   styles.presetLabel,
                   {
-                    color: active ? c.onSecondaryContainer : c.onSurfaceVariant,
+                    color: active
+                      ? c.onSecondaryContainer
+                      : c.onSurfaceVariant,
                     fontFamily: 'Manrope-Medium',
                   },
                 ]}>
@@ -56,7 +71,8 @@ export const HardwareSplitSettings = observer(() => {
         })}
       </View>
 
-      <View style={[styles.ratioBar, {backgroundColor: c.surfaceContainer}]}>
+      <View
+        style={[styles.ratioBar, {backgroundColor: c.surfaceContainer}]}>
         <View
           style={[
             styles.gpuBar,
@@ -67,20 +83,39 @@ export const HardwareSplitSettings = observer(() => {
           ]}
         />
         <View style={styles.ratioLabels}>
-          <Text style={[styles.ratioText, {color: c.secondary, fontFamily: 'JetBrainsMono-Medium'}]}>
+          <Text
+            style={[
+              styles.ratioText,
+              {color: c.secondary, fontFamily: 'JetBrainsMono-Medium'},
+            ]}>
             GPU {hardwareSplitStore.gpuPercentage}%
           </Text>
-          <Text style={[styles.ratioText, {color: c.onSurfaceVariant, fontFamily: 'JetBrainsMono-Medium'}]}>
+          <Text
+            style={[
+              styles.ratioText,
+              {
+                color: c.onSurfaceVariant,
+                fontFamily: 'JetBrainsMono-Medium',
+              },
+            ]}>
             CPU {hardwareSplitStore.cpuPercentage}%
           </Text>
         </View>
       </View>
 
       <View style={styles.sliderContainer}>
-        <Text style={[styles.sliderLabel, {color: c.onSurfaceVariant, fontFamily: 'Manrope-Regular'}]}>
+        <Text
+          style={[
+            styles.sliderLabel,
+            {color: c.onSurfaceVariant, fontFamily: 'Manrope-Regular'},
+          ]}>
           Custom: {hardwareSplitStore.gpuPercentage}% GPU
         </Text>
-        <View style={[styles.sliderTrack, {backgroundColor: c.surfaceContainerHighest}]}>
+        <View
+          style={[
+            styles.sliderTrack,
+            {backgroundColor: c.surfaceContainerHighest},
+          ]}>
           <View
             style={[
               styles.sliderFill,

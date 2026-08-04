@@ -47,7 +47,9 @@ class PocketPalNative {
     }
   }
 
-  async scanPocketPalModelsDirectory(treeUri: string): Promise<PocketPalModelFile[]> {
+  async scanPocketPalModelsDirectory(
+    treeUri: string,
+  ): Promise<PocketPalModelFile[]> {
     if (Platform.OS !== 'android') {
       throw new Error('PocketPal integration is only available on Android');
     }

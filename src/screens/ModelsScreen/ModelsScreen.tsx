@@ -281,7 +281,10 @@ export const ModelsScreen: React.FC = observer(() => {
 
   const handleImportPocketPalModels = async () => {
     if (Platform.OS !== 'android') {
-      Alert.alert('Not Available', 'PocketPal AI import is only available on Android');
+      Alert.alert(
+        'Not Available',
+        'PocketPal AI import is only available on Android',
+      );
       return;
     }
 

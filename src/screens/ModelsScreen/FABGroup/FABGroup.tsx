@@ -1,8 +1,10 @@
+import React, {
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
 import {Image} from 'react-native';
-import React, {useContext, useMemo, useState} from 'react';
-
 import {FAB} from 'react-native-paper';
-
 import {useTheme} from '../../../hooks';
 import {L10nContext} from '../../../utils';
 import {CloudPlusIcon} from '../../../assets/icons';
@@ -20,7 +22,6 @@ interface FABGroupProps {
 
 const iconStyle = {width: 24, height: 24};
 
-// Icon component type for react-native-paper FAB actions
 type IconComponentProps = {
   size: number;
   allowFontScaling?: boolean;
@@ -96,7 +97,6 @@ export const FABGroup: React.FC<FABGroupProps> = ({
         onAddRemoteModel();
       },
     });
-    ];
     if (hasServers && onManageServers) {
       items.push({
         testID: 'manage-servers-fab',
